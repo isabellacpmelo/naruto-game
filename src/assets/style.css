@@ -1,15 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;900&display=swap');
+/** @format */
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;900&display=swap");
 
 :root {
   color: #213547;
-  
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  
-  --primary: 198,100%,35%;
+
+  --primary: 198, 100%, 35%;
   --secondary: 81, 67%, 44%;
   --background: 0, 0%, 94.5%;
   --base: 0, 0%, 100%;
@@ -22,117 +24,36 @@
   --error: 4, 77%, 48%;
 }
 
-a {
-  text-decoration: inherit;
-  font-weight: 500;
-}
-
-a:hover {
-  color: #005587;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-html {
-  overflow: hidden;
-  height: 100%;
-}
-
-body {
-  width: auto;
-  height: 394px;
-  overflow: auto;
+* {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  overflow-x: hidden;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
-  line-height: 1.5;
-  font-weight: 400;
-  background-color: hsl(var(--background));
-  color: hsl(var(--content));
-  --bar-bg: var(var(--background));
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.game-board {
+  width: 80%;
+  height: 500px;
+  border: 1px solid #333333;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
 
-button {
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.sakura {
+  transform: rotateY(180deg);
+  position: absolute;
+  bottom: 0;
+  width: 110px;
+  right: -110px;
+  animation: sakura-animation 5s infinite linear;
 }
 
-.card {
-  padding: 2em;
-}
+@keyframes sakura-animation {
+  from {
+    right: -50px;
+  }
 
-#app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-::selection {
-  color: #FFF;
-  background: hsl(var(--secondary));
-}
-body,
-div {
-  --bar: 7px;
-  --bar-start: 0;
-  --bar-end: 0;
-}
-div {
-  --bar-bg: var(--base);
-}
-::-webkit-scrollbar {
-  width: var(--bar);
-  height: var(--bar);
-  right: -100px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(var(--bar-bg));
-  margin-top: var(--bar-start);
-  margin-left: var(--bar-start);
-  margin-bottom: var(--bar-end);
-  margin-right: var(--bar-end);
-}
-::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 var(--bar) var(--bar) hsl(var(--dark-base),.3);
-  transition: all 1s ease-in-out;
-}
-.dark ::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 var(--bar) var(--bar) #fff9;
-}
-::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 var(--bar) var(--bar) hsl(var(--secondary));
-}
-::-webkit-scrollbar-button {
-  display: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.scroll-left {
-  direction: rtl;
-}
-.scroll-left > div {
-  direction: ltr;
-}
-
-.q-field__bottom {
-  padding: 4px 12px 0;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+  to {
+    right: 100%;
   }
 }
