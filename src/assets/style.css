@@ -40,27 +40,25 @@
 }
 
 .sakura {
-  transform: rotateY(180deg);
   position: absolute;
   bottom: 0;
-  width: 110px;
-  right: -110px;
+  width: 100px;
   animation: sakura-animation 3s infinite linear;
 }
 
 .naruto {
-  width: 110px;
+  width: 100px;
   position: absolute;
   bottom: 0;
 }
 
 .jump {
-  animation: jump 1200ms infinite ease-out;
+  animation: jump 1000ms ease-out;
 }
 
 @keyframes sakura-animation {
   from {
-    right: -50px;
+    right: 0;
   }
 
   to {
@@ -73,16 +71,8 @@
     bottom: 0;
   }
 
-  40% {
-    bottom: 180px;
-  }
-
   50% {
-    bottom: 180px;
-  }
-
-  60% {
-    bottom: 180px;
+    bottom: 250px;
   }
 
   100% {

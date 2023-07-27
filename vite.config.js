@@ -1,3 +1,4 @@
+/* eslint-disable n/prefer-global/process */
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'

@@ -1,10 +1,19 @@
 <!-- @format -->
 <script setup>
-// when keydown is pressed, naruto will recive the class .jump
 function narutoJump() {
-  console.warn('naruto jumping')
-  // document.querySelector(".naruto").classList.add("jumppnpp");
+  document.querySelector('.naruto').classList.add('jump')
+  setTimeout(() => {
+    document.querySelector('.naruto').classList.remove('jump')
+  }, 1000)
 }
+
+const loop = setInterval(() => {
+  const pipePosition = document.querySelector('.sakura').offsetLeft
+  if (pipePosition <= 100) {
+    document.querySelector('.sakura').style.animation = 'none'
+    document.querySelector('.sakura').style.left = `${pipePosition}px`
+  }
+}, 10)
 </script>
 
 <template>
@@ -19,7 +28,7 @@ function narutoJump() {
         src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-running.gif?raw=true"
         alt="Naruto Running"
         class="naruto"
-        @keyup="narutoJump()"
+        @click="narutoJump"
       >
     </div>
   </div>
