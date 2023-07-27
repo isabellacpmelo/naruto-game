@@ -18,7 +18,7 @@
     "file-saver": "^2.0.5",
     "quasar": "^2.12.3",
     "vue": "^3.3.4",
-    "vue-json-excel3": "^0.0.9",
+    "vue-json-excel3": "^1.0.0",
     "vue-router": "^4.2.4",
     "xlsx": "^0.18.5"
   },
@@ -29,7 +29,7 @@
     "@quasar/vite-plugin": "^1.4.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "eslint": "^8.45.0",
-    "sass": "1.32.12",
+    "sass": "1.64.1",
     "unocss": "^0.53.6",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
