@@ -48,6 +48,12 @@
   animation: sakura-animation 5s infinite linear;
 }
 
+.naruto {
+  width: 300px;
+  position: absolute;
+  bottom: 0;
+}
+
 @keyframes sakura-animation {
   from {
     right: -50px;
