@@ -28,6 +28,12 @@ const loop = setInterval(() => {
 <template>
   <div class="background">
     <div class="game-board">
+      <!-- Criar Tela Inicial -->
+      <!-- Criar fase do jogo -->
+      <!-- Criar tela Game Over -->
+      <!-- Criar cronometro -->
+      <!-- criar tela de vitória -->
+      <!-- Adicionar mensagem especial -->
       <div>
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/clouds.png?raw=true"
@@ -62,10 +68,10 @@ const loop = setInterval(() => {
 
 .game-board {
   width: 80%;
-  height: 50%;
+  height: 60%;
   border-bottom: 10px solid rgb(3, 95, 23);
   border-radius: 3px;
-  margin: 16px;
+  margin-bottom: 100px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(#87CEEB, #E0F6FF);
@@ -87,9 +93,9 @@ const loop = setInterval(() => {
 }
 
 .clouds {
-  width: 60%;
+  width: 200px;
   position: absolute;
-  bottom: 60%;
+  bottom: 50%;
   animation: clouds-animation 10s infinite linear;
 }
 
