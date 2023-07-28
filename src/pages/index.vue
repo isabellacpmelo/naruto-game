@@ -4,14 +4,23 @@ function narutoJump() {
   document.querySelector('.naruto').classList.add('jump')
   setTimeout(() => {
     document.querySelector('.naruto').classList.remove('jump')
-  }, 1000)
+  }, 2000)
 }
 
 const loop = setInterval(() => {
-  const pipePosition = document.querySelector('.sakura').offsetLeft
-  if (pipePosition <= 100) {
-    document.querySelector('.sakura').style.animation = 'none'
-    document.querySelector('.sakura').style.left = `${pipePosition}px`
+  const cactusPosition = document.querySelector('.cactus').offsetLeft
+  const narutoPosition = +window.getComputedStyle(document.querySelector('.naruto')).bottom.replace('px', '')
+
+  if (cactusPosition <= 60 && cactusPosition > 0 && narutoPosition < 46) {
+    document.querySelector('.cactus').style.animation = 'none'
+    document.querySelector('.cactus').style.left = `${cactusPosition}px`
+
+    document.querySelector('.naruto').style.animation = 'none'
+    document.querySelector('.naruto').style.bottom = `${narutoPosition}px`
+
+    document.querySelector('.naruto').src = 'https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sakura.gif?raw=true'
+
+    clearInterval(loop)
   }
 }, 10)
 </script>
@@ -21,9 +30,14 @@ const loop = setInterval(() => {
     <div class="game-board">
       <div>
         <img
+          src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/clouds.png?raw=true"
+          alt="Clouds"
+          class="clouds"
+        >
+        <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/cacto.png?raw=true"
           alt="Cactus"
-          class="sakura"
+          class="cactus"
         >
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-running.gif?raw=true"
@@ -43,38 +57,47 @@ const loop = setInterval(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(5, 73, 20);
+  background-color: rgb(236, 118, 64);
 }
 
 .game-board {
   width: 80%;
   height: 50%;
-  border: 1px solid #333333;
-  border-radius: 10px;
+  border-bottom: 10px solid rgb(3, 95, 23);
+  border-radius: 3px;
   margin: 16px;
   position: relative;
   overflow: hidden;
-  background-color: antiquewhite;
+  background: linear-gradient(#87CEEB, #E0F6FF);
 }
 
-.sakura {
+.cactus {
   position: absolute;
-  bottom: 0;
-  width: 40px;
-  animation: sakura-animation 3s infinite linear;
+  bottom: -7.5px;
+  height: 50px;
+  width: 30px;
+  animation: cactus-animation 3s infinite linear;
 }
 
 .naruto {
-  width: 100px;
+  width: 60px;
+  height: 70px;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
+}
+
+.clouds {
+  width: 60%;
+  position: absolute;
+  bottom: 60%;
+  animation: clouds-animation 10s infinite linear;
 }
 
 .jump {
-  animation: jump 1000ms ease-out;
+  animation: jump 2000ms ease-out;
 }
 
-@keyframes sakura-animation {
+@keyframes cactus-animation {
   from {
     right: 0;
   }
@@ -90,11 +113,21 @@ const loop = setInterval(() => {
   }
 
   50% {
-    bottom: 250px;
+    bottom: 150px;
   }
 
   100% {
     bottom: 0;
+  }
+}
+
+@keyframes clouds-animation {
+  from {
+    right: -60%;
+  }
+
+  to {
+    right: 100%;
   }
 }
 </style>
