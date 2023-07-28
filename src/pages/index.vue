@@ -21,8 +21,8 @@ const loop = setInterval(() => {
     <div class="game-board">
       <div>
         <img
-          src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sakura.gif?raw=true"
-          alt="Sakura Fighting"
+          src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/cacto.png?raw=true"
+          alt="Cactus"
           class="sakura"
         >
         <img
@@ -60,7 +60,7 @@ const loop = setInterval(() => {
 .sakura {
   position: absolute;
   bottom: 0;
-  width: 100px;
+  width: 40px;
   animation: sakura-animation 3s infinite linear;
 }
 
