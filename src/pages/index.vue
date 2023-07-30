@@ -1,6 +1,7 @@
 <!-- @format -->
 <script setup>
 const startGame = ref(false)
+
 function narutoJump() {
   document.querySelector('.naruto').classList.add('jump')
   setTimeout(() => {
@@ -11,12 +12,12 @@ function narutoJump() {
 const loop = setInterval(() => {
   if (startGame.value) {
     console.warn('loop')
-    const cactusPosition = document.querySelector('.cactus').offsetLeft
+    const bambooPosition = document.querySelector('.bamboo').offsetLeft
     const narutoPosition = +window.getComputedStyle(document.querySelector('.naruto')).bottom.replace('px', '')
 
-    if (cactusPosition <= 60 && cactusPosition > 0 && narutoPosition < 46) {
-      document.querySelector('.cactus').style.animation = 'none'
-      document.querySelector('.cactus').style.left = `${cactusPosition}px`
+    if (bambooPosition <= 60 && bambooPosition > 0 && narutoPosition < 46) {
+      document.querySelector('.bamboo').style.animation = 'none'
+      document.querySelector('.bamboo').style.left = `${bambooPosition}px`
 
       document.querySelector('.naruto').style.animation = 'none'
       document.querySelector('.naruto').style.bottom = `${narutoPosition}px`
@@ -35,15 +36,24 @@ const loop = setInterval(() => {
 <template>
   <div class="background">
     <div v-if="!startGame" class="start-game">
-      <div>
+      <img
+        src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sasuke-start-game.png?raw=true"
+        alt="Sasuke"
+        class="h-56 w-fit mr-[-40px]"
+      >
+      <div class="z-10">
         <p>Narutinho <br> Game</p>
         <button class="mt-20 start-game-btn" @click="startGame = !startGame">
           Start Game
         </button>
       </div>
+      <img
+        src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-start-game.png?raw=true"
+        alt="Naruto"
+        class="h-56 w-fit ml-[-40px]"
+      >
     </div>
     <div v-else class="game-board">
-      <!-- Criar Tela Inicial -->
       <!-- Criar fase do jogo -->
       <!-- Criar tela Game Over -->
       <!-- Criar cronometro -->
@@ -56,9 +66,9 @@ const loop = setInterval(() => {
           class="clouds"
         >
         <img
-          src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/bamboo.png?raw=true"
-          alt="Cactus"
-          class="cactus"
+          src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/bamboo-1.png?raw=true"
+          alt="bamboo"
+          class="bamboo"
         >
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-running.gif?raw=true"
@@ -83,8 +93,7 @@ const loop = setInterval(() => {
 
 .start-game {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 80%;
   height: 60%;
@@ -102,15 +111,6 @@ const loop = setInterval(() => {
   animation: start-game-btn-animation 1s infinite;
 }
 
-/* Criar animação para piscar a .start-game-btn */
-@keyframes start-game-btn-animation {
-  from {
-    transform: scale(0.9);
-  }
-  to {
-    transform: scale(1);
-  }
-}
 .game-board {
   width: 80%;
   height: 60%;
@@ -122,12 +122,12 @@ const loop = setInterval(() => {
   background: linear-gradient(#87CEEB, #E0F6FF);
 }
 
-.cactus {
+.bamboo {
   position: absolute;
   bottom: -7.5px;
   height: 50px;
   width: 30px;
-  animation: cactus-animation 3s infinite linear;
+  animation: bamboo-animation 3s infinite linear;
 }
 
 .naruto {
@@ -148,7 +148,16 @@ const loop = setInterval(() => {
   animation: jump 2000ms ease-out;
 }
 
-@keyframes cactus-animation {
+@keyframes start-game-btn-animation {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes bamboo-animation {
   from {
     right: 0;
   }
