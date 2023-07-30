@@ -1,5 +1,6 @@
 <!-- @format -->
 <script setup>
+const startGame = ref(false)
 function narutoJump() {
   document.querySelector('.naruto').classList.add('jump')
   setTimeout(() => {
@@ -8,26 +9,37 @@ function narutoJump() {
 }
 
 const loop = setInterval(() => {
-  const cactusPosition = document.querySelector('.cactus').offsetLeft
-  const narutoPosition = +window.getComputedStyle(document.querySelector('.naruto')).bottom.replace('px', '')
+  if (startGame.value) {
+    console.warn('loop')
+    const cactusPosition = document.querySelector('.cactus').offsetLeft
+    const narutoPosition = +window.getComputedStyle(document.querySelector('.naruto')).bottom.replace('px', '')
 
-  if (cactusPosition <= 60 && cactusPosition > 0 && narutoPosition < 46) {
-    document.querySelector('.cactus').style.animation = 'none'
-    document.querySelector('.cactus').style.left = `${cactusPosition}px`
+    if (cactusPosition <= 60 && cactusPosition > 0 && narutoPosition < 46) {
+      document.querySelector('.cactus').style.animation = 'none'
+      document.querySelector('.cactus').style.left = `${cactusPosition}px`
 
-    document.querySelector('.naruto').style.animation = 'none'
-    document.querySelector('.naruto').style.bottom = `${narutoPosition}px`
+      document.querySelector('.naruto').style.animation = 'none'
+      document.querySelector('.naruto').style.bottom = `${narutoPosition}px`
 
-    document.querySelector('.naruto').src = 'https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sakura.gif?raw=true'
+      document.querySelector('.naruto').src = 'https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sakura.gif?raw=true'
 
-    clearInterval(loop)
+      clearInterval(loop)
+    }
   }
 }, 10)
 </script>
 
 <template>
   <div class="background">
-    <div class="game-board">
+    <div v-if="!startGame" class="start-game">
+      <!-- <div>
+        <p>Narutinho <br> Game</p>
+        <button class="mt-20 start-game-btn" @click="startGame = !startGame">
+          Start Game
+        </button>
+      </div> -->
+    </div>
+    <div v-else class="game-board">
       <!-- Criar Tela Inicial -->
       <!-- Criar fase do jogo -->
       <!-- Criar tela Game Over -->
@@ -66,6 +78,36 @@ const loop = setInterval(() => {
   background-color: rgb(236, 118, 64);
 }
 
+.start-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 60%;
+  border-radius: 3px;
+  margin-bottom: 100px;
+  overflow: hidden;
+  /* background: linear-gradient(#395766, #145c40); */
+  background: linear-gradient(#0B0B0B, #0C2FDF);
+  font-size: 30px;
+  text-align: center;
+}
+
+.start-game-btn {
+  font-size: 20px;
+  animation: start-game-btn-animation 1s infinite;
+}
+
+/* Criar animação para piscar a .start-game-btn */
+@keyframes start-game-btn-animation {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 .game-board {
   width: 80%;
   height: 60%;
