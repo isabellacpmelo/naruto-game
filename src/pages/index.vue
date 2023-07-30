@@ -21,7 +21,10 @@ const loop = setInterval(() => {
       document.querySelector('.naruto').style.animation = 'none'
       document.querySelector('.naruto').style.bottom = `${narutoPosition}px`
 
-      document.querySelector('.naruto').src = 'https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sakura.gif?raw=true'
+      document.querySelector('.naruto').src = 'https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-angry.png?raw=true'
+      // diminuir o tamanho do naruto
+      document.querySelector('.naruto').style.width = '50px'
+      document.querySelector('.naruto').style.height = '50px'
 
       clearInterval(loop)
     }
@@ -32,12 +35,12 @@ const loop = setInterval(() => {
 <template>
   <div class="background">
     <div v-if="!startGame" class="start-game">
-      <!-- <div>
+      <div>
         <p>Narutinho <br> Game</p>
         <button class="mt-20 start-game-btn" @click="startGame = !startGame">
           Start Game
         </button>
-      </div> -->
+      </div>
     </div>
     <div v-else class="game-board">
       <!-- Criar Tela Inicial -->
@@ -53,7 +56,7 @@ const loop = setInterval(() => {
           class="clouds"
         >
         <img
-          src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/cacto.png?raw=true"
+          src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/bamboo.png?raw=true"
           alt="Cactus"
           class="cactus"
         >
