@@ -1,6 +1,7 @@
 <!-- @format -->
 <script setup>
 const startGame = ref(false)
+const gameOver = ref(false)
 
 function narutoJump() {
   document.querySelector('.naruto').classList.add('jump')
@@ -11,7 +12,6 @@ function narutoJump() {
 
 const loop = setInterval(() => {
   if (startGame.value) {
-    console.warn('loop')
     const bambooPosition = document.querySelector('.bamboo').offsetLeft
     const narutoPosition = +window.getComputedStyle(document.querySelector('.naruto')).bottom.replace('px', '')
 
@@ -24,18 +24,27 @@ const loop = setInterval(() => {
 
       document.querySelector('.naruto').src = 'https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-angry.png?raw=true'
       // diminuir o tamanho do naruto
-      document.querySelector('.naruto').style.width = '50px'
-      document.querySelector('.naruto').style.height = '50px'
+      document.querySelector('.naruto').style.width = '70px'
+      document.querySelector('.naruto').style.height = '70px'
 
       clearInterval(loop)
+      setTimeout(() => {
+        gameOver.value = true
+      }, 2000)
     }
   }
 }, 10)
+
+function restartGame() {
+  startGame.value = false
+  gameOver.value = false
+  loop.clearInterval()
+}
 </script>
 
 <template>
   <div class="background">
-    <div v-if="!startGame" class="start-game">
+    <div v-if="!startGame && !gameOver" class="start-game">
       <img
         src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sasuke-start-game.png?raw=true"
         alt="Sasuke"
@@ -53,7 +62,7 @@ const loop = setInterval(() => {
         class="h-56 w-fit ml-[-40px]"
       >
     </div>
-    <div v-else class="game-board">
+    <div v-else-if="startGame && !gameOver" class="game-board">
       <!-- Criar fase do jogo -->
       <!-- Criar tela Game Over -->
       <!-- Criar cronometro -->
@@ -77,6 +86,12 @@ const loop = setInterval(() => {
           @click="narutoJump"
         >
       </div>
+    </div>
+    <div v-else class="game-over">
+      Game Over!
+      <button class="mt-20 start-game-btn" @click="restartGame">
+        Start Game
+      </button>
     </div>
   </div>
 </template>
@@ -146,6 +161,22 @@ const loop = setInterval(() => {
 
 .jump {
   animation: jump 2000ms ease-out;
+}
+
+.game-over {
+  font-size: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 60%;
+  border-radius: 3px;
+  margin-bottom: 100px;
+  overflow: hidden;
+  /* background: linear-gradient(#395766, #145c40); */
+  background: #0B0B0B;
+  text-align: center;
 }
 
 @keyframes start-game-btn-animation {
