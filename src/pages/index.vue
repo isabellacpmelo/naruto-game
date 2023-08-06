@@ -2,6 +2,7 @@
 <script setup>
 const startGame = ref(false)
 const gameOver = ref(false)
+const gameStage = ref(0)
 
 function narutoJump() {
   document.querySelector('.naruto').classList.add('jump')
@@ -38,9 +39,43 @@ const loop = setInterval(() => {
 function restartGame() {
   window.location.reload()
 }
+
+const timeLeft = ref(3)
+let timer = null
+
+function startTimer() {
+  if (timer)
+    clearInterval(timer)
+  timeLeft.value = 3
+  timer = setInterval(() => {
+    timeLeft.value--
+    if (timeLeft.value === 0)
+      clearInterval(timer)
+  }, 1000)
+}
+
+function startGameOnFirstStage() {
+  startGame.value = true
+  gameStage.value = 1
+  startTimer()
+  // enquanto o startGame.value for true e gameStage.value menor que 4, incrementar gameStage.value e chamar startTimer após 3 segundos
+  setTimeout(() => {
+    gameStage.value++
+    startTimer()
+  }, 33000)
+
+  setTimeout(() => {
+    gameStage.value++
+    startTimer()
+  }, 66000)
+}
 </script>
 
 <template>
+  <!-- <div>
+    <p>{{ timeLeft }}</p>
+    <p>Stage: {{ gameStage }}</p>
+  </div> -->
   <div class="background">
     <div v-if="!startGame && !gameOver" class="start-game">
       <img
@@ -50,7 +85,7 @@ function restartGame() {
       >
       <div class="z-10">
         <p>Narutinho <br> Game</p>
-        <button class="mt-20 start-game-btn" @click="startGame = !startGame">
+        <button class="mt-20 start-game-btn" @click="startGameOnFirstStage">
           Start Game
         </button>
       </div>
@@ -61,12 +96,20 @@ function restartGame() {
       >
     </div>
     <div v-else-if="startGame && !gameOver" class="game-board">
+
       <!-- Criar fase do jogo -->
-      <!-- Criar tela Game Over -->
       <!-- Criar cronometro -->
       <!-- criar tela de vitória -->
       <!-- Adicionar mensagem especial -->
-      <div>
+      <div v-show="timeLeft > 0" class="text-center flex flex-col justify-center items-center h-full">
+        <p class="mb-10 text-5xl">
+          Fase {{ gameStage }}
+        </p>
+        <p class="text-7xl">
+          {{ timeLeft }}
+        </p>
+      </div>
+      <div v-show="timeLeft === 0">
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/clouds.png?raw=true"
           alt="Clouds"
