@@ -36,9 +36,7 @@ const loop = setInterval(() => {
 }, 10)
 
 function restartGame() {
-  startGame.value = false
-  gameOver.value = false
-  loop.clearInterval()
+  window.location.reload()
 }
 </script>
 
@@ -90,7 +88,7 @@ function restartGame() {
     <div v-else class="game-over">
       Game Over!
       <button class="mt-20 start-game-btn" @click="restartGame">
-        Start Game
+        Restart Game
       </button>
     </div>
   </div>
