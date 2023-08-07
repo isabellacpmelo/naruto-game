@@ -58,7 +58,7 @@ function startGameOnFirstStage() {
   startGame.value = true
   gameStage.value = 1
   startTimer()
-  // enquanto o startGame.value for true e gameStage.value menor que 4, incrementar gameStage.value e chamar startTimer após 3 segundos
+
   setTimeout(() => {
     gameStage.value++
     startTimer()
@@ -68,14 +68,19 @@ function startGameOnFirstStage() {
     gameStage.value++
     startTimer()
   }, 66000)
+
+  setTimeout(() => {
+    gameStage.value++
+    startTimer()
+  }, 99000)
 }
 </script>
 
 <template>
-  <!-- <div>
+  <div>
     <p>{{ timeLeft }}</p>
     <p>Stage: {{ gameStage }}</p>
-  </div> -->
+  </div>
   <div class="background">
     <div v-if="!startGame && !gameOver" class="start-game">
       <img
@@ -96,12 +101,11 @@ function startGameOnFirstStage() {
       >
     </div>
     <div v-else-if="startGame && !gameOver" class="game-board">
-
       <!-- Criar fase do jogo -->
       <!-- Criar cronometro -->
       <!-- criar tela de vitória -->
       <!-- Adicionar mensagem especial -->
-      <div v-show="timeLeft > 0" class="text-center flex flex-col justify-center items-center h-full">
+      <div v-show="timeLeft > 0 && gameStage < 4" class="text-center flex flex-col justify-center items-center h-full">
         <p class="mb-10 text-5xl">
           Fase {{ gameStage }}
         </p>
@@ -109,7 +113,7 @@ function startGameOnFirstStage() {
           {{ timeLeft }}
         </p>
       </div>
-      <div v-show="timeLeft === 0">
+      <div v-show="timeLeft === 0 && gameStage < 4">
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/clouds.png?raw=true"
           alt="Clouds"
@@ -126,6 +130,14 @@ function startGameOnFirstStage() {
           class="naruto"
           @click="narutoJump"
         >
+      </div>
+      <div v-show="gameStage > 3" class="text-center flex flex-col justify-center items-center h-full">
+        <p class="mb-10 text-5xl">
+          You won!
+        </p>
+        <button class="mt-20 start-game-btn">
+          <a href="#/prize">Click here to claim your prize</a>
+        </button>
       </div>
     </div>
     <div v-else class="game-over">
