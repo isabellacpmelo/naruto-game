@@ -16,7 +16,7 @@ const loop = setInterval(() => {
     const bambooPosition = document.querySelector('.bamboo').offsetLeft
     const narutoPosition = +window.getComputedStyle(document.querySelector('.naruto')).bottom.replace('px', '')
 
-    if (bambooPosition <= 60 && bambooPosition > 0 && narutoPosition < 46) {
+    if (bambooPosition <= 50 && bambooPosition > 0 && narutoPosition < 35) {
       document.querySelector('.bamboo').style.animation = 'none'
       document.querySelector('.bamboo').style.left = `${bambooPosition}px`
 
@@ -54,12 +54,12 @@ function startTimer() {
   }, 1000)
 }
 
-const timerGameLeft = ref(33)
+const timerGameLeft = ref(0)
 let newTimer = null
-function gameTimer() {
+function gameTimer(timeValue) {
   if (newTimer)
     clearInterval(newTimer)
-  timerGameLeft.value = 33
+  timerGameLeft.value = timeValue
   newTimer = setInterval(() => {
     timerGameLeft.value--
     if (timerGameLeft.value === 0)
@@ -71,30 +71,30 @@ function startGameOnFirstLevel() {
   startGame.value = true
   gameLevel.value = 1
   startTimer()
-  gameTimer()
+  gameTimer(18)
 
   setTimeout(() => {
     gameLevel.value++
     startTimer()
-    gameTimer()
-  }, 34000)
+    gameTimer(23)
+  }, 19000)
 
   setTimeout(() => {
     gameLevel.value++
     startTimer()
-    gameTimer()
-  }, 68000)
+    gameTimer(28)
+  }, 43000)
 
   setTimeout(() => {
     gameLevel.value++
     startTimer()
-    gameTimer()
-  }, 102000)
+    gameTimer(10)
+  }, 72000)
 }
 </script>
 
 <template>
-  <div class="background">
+  <div class="background" @click="narutoJump">
     <div v-if="!startGame && !gameOver" class="start-game">
       <img
         src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/sasuke-start-game.png?raw=true"
@@ -114,7 +114,7 @@ function startGameOnFirstLevel() {
       >
     </div>
     <div v-else-if="startGame && !gameOver" class="game-board">
-      <div v-show="timeLeft > 0 && gameLevel < 4" class="text-center flex flex-col justify-center items-center h-full">
+      <div v-show="timeLeft > 0 && gameLevel < 4 && !gameOver" class="text-center flex flex-col justify-center items-center h-full">
         <p class="mb-10 text-5xl">
           Level {{ gameLevel }}
         </p>
@@ -122,7 +122,7 @@ function startGameOnFirstLevel() {
           {{ timeLeft }}
         </p>
       </div>
-      <div v-show="timeLeft === 0 && gameLevel < 4">
+      <div v-show="timeLeft === 0 && gameLevel < 4 && !gameOver">
         <div class="m-2">
           <p class="mb-1 text-xl">
             Level {{ gameLevel }}
@@ -135,20 +135,21 @@ function startGameOnFirstLevel() {
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/clouds.png?raw=true"
           alt="Clouds"
           class="clouds"
+          :class="`level-${gameLevel}-clouds`"
         >
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/bamboo-1.png?raw=true"
           alt="bamboo"
           class="bamboo"
+          :class="`level-${gameLevel}-bamboo`"
         >
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-running.gif?raw=true"
           alt="Naruto Running"
           class="naruto"
-          @click="narutoJump"
         >
       </div>
-      <div v-show="gameLevel > 3" class="text-center flex flex-col justify-center items-center h-full">
+      <div v-show="gameLevel > 3 && !gameOver" class="text-center flex flex-col justify-center items-center h-full">
         <p class="mb-10 text-5xl">
           You won!
         </p>
@@ -212,7 +213,19 @@ function startGameOnFirstLevel() {
   bottom: -7.5px;
   height: 50px;
   width: 30px;
-  animation: bamboo-animation 3s infinite linear;
+  animation: bamboo-animation var(--animation-duration) infinite linear;
+}
+
+.level-1-bamboo {
+  --animation-duration: 3s;
+}
+
+.level-2-bamboo {
+  --animation-duration: 2.7s;
+}
+
+.level-3-bamboo {
+  --animation-duration: 2.4s;
 }
 
 .naruto {
@@ -226,7 +239,19 @@ function startGameOnFirstLevel() {
   width: 200px;
   position: absolute;
   bottom: 50%;
-  animation: clouds-animation 10s infinite linear;
+  animation: clouds-animation var(--animation-duration) infinite linear;
+}
+
+.level-1-clouds {
+  --animation-duration: 8s;
+}
+
+.level-2-clouds {
+  --animation-duration: 6s;
+}
+
+.level-3-clouds {
+  --animation-duration: 4s;
 }
 
 .jump {
