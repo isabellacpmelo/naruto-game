@@ -2,7 +2,7 @@
 <script setup>
 const startGame = ref(false)
 const gameOver = ref(false)
-const gameStage = ref(0)
+const gameLevel = ref(0)
 
 function narutoJump() {
   document.querySelector('.naruto').classList.add('jump')
@@ -54,33 +54,46 @@ function startTimer() {
   }, 1000)
 }
 
-function startGameOnFirstStage() {
+const timerGameLeft = ref(33)
+let newTimer = null
+function gameTimer() {
+  if (newTimer)
+    clearInterval(newTimer)
+  timerGameLeft.value = 33
+  newTimer = setInterval(() => {
+    timerGameLeft.value--
+    if (timerGameLeft.value === 0)
+      clearInterval(newTimer)
+  }, 1000)
+}
+
+function startGameOnFirstLevel() {
   startGame.value = true
-  gameStage.value = 1
+  gameLevel.value = 1
   startTimer()
+  gameTimer()
 
   setTimeout(() => {
-    gameStage.value++
+    gameLevel.value++
     startTimer()
-  }, 33000)
+    gameTimer()
+  }, 34000)
 
   setTimeout(() => {
-    gameStage.value++
+    gameLevel.value++
     startTimer()
-  }, 66000)
+    gameTimer()
+  }, 68000)
 
   setTimeout(() => {
-    gameStage.value++
+    gameLevel.value++
     startTimer()
-  }, 99000)
+    gameTimer()
+  }, 102000)
 }
 </script>
 
 <template>
-  <div>
-    <p>{{ timeLeft }}</p>
-    <p>Stage: {{ gameStage }}</p>
-  </div>
   <div class="background">
     <div v-if="!startGame && !gameOver" class="start-game">
       <img
@@ -90,7 +103,7 @@ function startGameOnFirstStage() {
       >
       <div class="z-10">
         <p>Narutinho <br> Game</p>
-        <button class="mt-20 start-game-btn" @click="startGameOnFirstStage">
+        <button class="mt-20 start-game-btn" @click="startGameOnFirstLevel">
           Start Game
         </button>
       </div>
@@ -101,19 +114,23 @@ function startGameOnFirstStage() {
       >
     </div>
     <div v-else-if="startGame && !gameOver" class="game-board">
-      <!-- Criar fase do jogo -->
-      <!-- Criar cronometro -->
-      <!-- criar tela de vitória -->
-      <!-- Adicionar mensagem especial -->
-      <div v-show="timeLeft > 0 && gameStage < 4" class="text-center flex flex-col justify-center items-center h-full">
+      <div v-show="timeLeft > 0 && gameLevel < 4" class="text-center flex flex-col justify-center items-center h-full">
         <p class="mb-10 text-5xl">
-          Fase {{ gameStage }}
+          Level {{ gameLevel }}
         </p>
         <p class="text-7xl">
           {{ timeLeft }}
         </p>
       </div>
-      <div v-show="timeLeft === 0 && gameStage < 4">
+      <div v-show="timeLeft === 0 && gameLevel < 4">
+        <div class="m-2">
+          <p class="mb-1 text-xl">
+            Level {{ gameLevel }}
+          </p>
+          <p>
+            Time Left: {{ timerGameLeft }}
+          </p>
+        </div>
         <img
           src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/clouds.png?raw=true"
           alt="Clouds"
@@ -131,7 +148,7 @@ function startGameOnFirstStage() {
           @click="narutoJump"
         >
       </div>
-      <div v-show="gameStage > 3" class="text-center flex flex-col justify-center items-center h-full">
+      <div v-show="gameLevel > 3" class="text-center flex flex-col justify-center items-center h-full">
         <p class="mb-10 text-5xl">
           You won!
         </p>
