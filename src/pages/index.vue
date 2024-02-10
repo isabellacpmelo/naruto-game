@@ -106,6 +106,10 @@ function startGameOnFirstLevel() {
         <button class="mt-20 start-game-btn" @click="startGameOnFirstLevel">
           Start Game
         </button>
+        <br>
+        <p class="pt-20 text-sm">
+          >> Use mouse click to make Naruto jump
+        </p>
       </div>
       <img
         src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-start-game.png?raw=true"
@@ -161,7 +165,7 @@ function startGameOnFirstLevel() {
     <div v-else class="game-over">
       Game Over!
       <button class="mt-20 start-game-btn" @click="restartGame">
-        Restart Game
+        Return to Home Page
       </button>
     </div>
   </div>

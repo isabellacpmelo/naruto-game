@@ -14,11 +14,4 @@ const router = createRouter({
   routes,
 })
 
-// router.beforeEach((to, from, next) => {
-//     if(to.meta?.isAuthenticated){
-//         next('/')
-//     }
-//     next()
-// })
-
 export default router

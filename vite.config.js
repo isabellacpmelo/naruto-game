@@ -50,14 +50,14 @@ export default defineConfig({
     AutoImport({
       include: [
         /\.js$/,
-        /\.vue$/, /\.vue\?vue/, // .vue
-        /\.md$/, // .md
+        /\.vue$/, /\.vue\?vue/,
+        /\.md$/,
       ],
       imports: [
         'vue',
         'vue-router',
         'vue/macros',
-        // '@vueuse/core',
+        '@vueuse/core',
         {
           axios: [
             ['default', 'axios'],
@@ -73,9 +73,9 @@ export default defineConfig({
       vueTemplate: true,
       dts: false,
       eslintrc: {
-        enabled: true, // Default `false`
-        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        enabled: true,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true,
       },
     }),
   ],

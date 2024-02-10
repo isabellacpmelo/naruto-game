@@ -14,19 +14,19 @@ import 'uno.css'
 const app = createApp(App)
 app.component('Transition', Transition)
 app.use(Quasar, {
-  plugins: { Dialog }, // import Quasar plugins and add here
+  plugins: { Dialog },
   lang: quasarLang,
   iconSet: quasarIconSet,
   config: {
     brand: {
-      primary: '#007db3',
-      secondary: '#86BC25',
-      accent: '#9C27B0',
-      dark: '#1D1D1D',
-      positive: '#21BA45',
-      negative: '#C10015',
-      info: '#31CCEC',
-      warning: '#F2C037',
+      primary: '#001d90',
+      secondary: '#3a8000',
+      accent: '#2f4f4f',
+      dark: '#171717',
+      positive: '#27893e',
+      negative: '#8b0f1d',
+      info: '#26a4be',
+      warning: '#ffd700',
     },
   },
 })

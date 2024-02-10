@@ -10,7 +10,13 @@ const isGiftOpened = ref(false)
     <p class="mb-8">
       And your prize is...
     </p>
-    <p class="p-10" :class="isGiftOpened ? 'i-streamline-emojis:wrapped-gift-2' : 'i-noto-wrapped-gift closed-gift'" @click="isGiftOpened = true" />
+    <p v-if="!isGiftOpened" class="p-10" :class="isGiftOpened ? 'i-streamline-emojis:wrapped-gift-2' : 'i-noto-wrapped-gift closed-gift'" @click="isGiftOpened = true" />
+    <img
+      v-if="isGiftOpened"
+      src="https://github.com/isabellacpmelo/naruto-game/blob/main/src/assets/images/naruto-start-game.png?raw=true"
+      alt="Naruto"
+      class="h-56 w-fit ml-[-40px]"
+    >
   </div>
 </template>
 
