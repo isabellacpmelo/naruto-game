@@ -72,3 +72,7 @@ pnpm preview
 pnpm lint:fix
 ```
 
+## Deploy Status
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9a75d183-7cf4-4482-aa3d-508615b30171/deploy-status)](https://app.netlify.com/sites/naruto-running-game/deploys)
+
