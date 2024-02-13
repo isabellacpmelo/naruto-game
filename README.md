@@ -7,7 +7,7 @@
 <a href="https://naruto-running-game.netlify.app/#/">Click here to access the website</a>
 
 ## About the project
-Racing game with Naruto based on T-Rex Gmae
+Naruto's racing game, based on T-Rex Game.
 
 ### Screen Overview
 
