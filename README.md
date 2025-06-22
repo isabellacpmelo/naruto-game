@@ -10,9 +10,9 @@
 
 ## About the project
 
-Naruto's racing game, based on T-Rex Game.
+Narutinho Game is a Naruto-themed running game inspired by the classic T-Rex Game from Chrome. Run through obstacles, aim for the highest score, and unlock surprise rewards along the way. A nostalgic and fun experience for fans of the anime!
 
-### Screen Overview
+### Screenshots
 
 #### Home Page
 
@@ -46,53 +46,35 @@ Naruto's racing game, based on T-Rex Game.
 
 ### Project setup
 
-```
-pnpm i
-```
+`pnpm i`
 
-```
-pnpm update
-```
+`pnpm update`
 
-```
-pnpm upgrade
-```
+`pnpm upgrade`
 
 ### Compiles and hot-reloads for development
 
-```
-pnpm dev
-```
+`pnpm dev`
 
 or
 
-```
-pnpm dev --port=5173
-```
+`pnpm dev --port=5173`
 
 ### Compiles and minifies for production
 
-```
-pnpm build
-```
+`pnpm build`
 
 or
 
-```
-pnpm build --mode [environment]
-```
+`pnpm build --mode [environment]`
 
 and
 
-```
-pnpm preview
-```
+`pnpm preview`
 
 ### Lints and fixes files
 
-```
-pnpm lint:fix
-```
+`pnpm lint:fix`
 
 ## Project structure
 
