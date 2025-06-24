@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# Narutinho Game
+# Naruto Game
 
 <div align="left">
 <a href="https://naruto-running-game.netlify.app/#/"><img height="355em" alt="Narutinho Game" src="https://github.com/isabellacpmelo/naruto-game/assets/42364778/c0b4b219-209d-4ecc-8f2c-b2c4cca24a06" /></a>
@@ -10,7 +10,7 @@
 
 ## About the project
 
-Narutinho Game is a Naruto-themed running game inspired by the classic T-Rex Game from Chrome. Run through obstacles, aim for the highest score, and unlock surprise rewards along the way. A nostalgic and fun experience for fans of the anime!
+Naruto Game is a Naruto-themed running game inspired by the classic T-Rex Game from Chrome. Run through obstacles, aim for the highest score, and unlock surprise rewards along the way. A nostalgic and fun experience for fans of the anime!
 
 ### Screenshots
 
