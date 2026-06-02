@@ -1,10 +1,10 @@
 # Naruto Game
 
 <div align="left">
-<a href="https://naruto-running-game.netlify.app/#/"><img height="355em" alt="Narutinho Game" src="https://github.com/isabellacpmelo/naruto-game/assets/42364778/c0b4b219-209d-4ecc-8f2c-b2c4cca24a06" /></a>
+<a href="https://naruto-running-game.netlify.app/"><img height="355em" alt="Narutinho Game" src="https://github.com/isabellacpmelo/naruto-game/assets/42364778/c0b4b219-209d-4ecc-8f2c-b2c4cca24a06" /></a>
 </div>
 </br>
-<a href="https://naruto-running-game.netlify.app/naruto-game/">Click here to access the website</a>
+<a href="https://naruto-running-game.netlify.app/">Click here to access the website</a>
 
 ## About the project
 

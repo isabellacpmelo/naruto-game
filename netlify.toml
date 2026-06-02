@@ -1,0 +1,18 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[context.production]
+  environment = { VITE_BASE_URL = "/" }
+
+[context.deploy-preview]
+  environment = { VITE_BASE_URL = "/" }
+
+[context.branch-deploy]
+  environment = { VITE_BASE_URL = "/" }
+
+# Redirect all 404s to index.html para SPA funcionarr
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,6 +1,7 @@
 {
   "extends": ["./.eslintrc-auto-import.json", "@antfu"],
   "rules": {
-    "vue/html-self-closing": "off"
-  }
+    "vue/html-self-closing": "off",
+    "@typescript-eslint": "semi",
+  },
 }
