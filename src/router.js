@@ -3,12 +3,14 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from '~pages'
 import { hasWonGame } from './composables/useGameState'
 
-const routes = setupLayouts(generatedRoutes)
-  .map((route, index) => {
-    route.meta = generatedRoutes[index].meta || {}
-
-    return route
-  })
+const routes = [
+  ...setupLayouts(generatedRoutes)
+    .map((route, index) => {
+      route.meta = generatedRoutes[index].meta || {}
+      return route
+    }),
+  { path: '/:pathMatch(.*)*', redirect: '/' },
+]
 
 const router = createRouter({
   history: createWebHistory('/naruto-game/'),
