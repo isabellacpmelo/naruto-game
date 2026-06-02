@@ -1,5 +1,3 @@
-<!-- @format -->
-
 # Naruto Game
 
 <div align="left">
@@ -32,91 +30,116 @@ Naruto Game is a Naruto-themed running game inspired by the classic T-Rex Game f
 
 ### Technologies
 
-- [Vue.js 3.3.4](https://vuejs.org/)
-- [Vite 4.4.7](https://vitejs.dev/)
-- [UnoCSS 0.54.0](https://unocss.dev/)
-- [Quasar 2.12.3](https://quasar.dev/)
-- [Eslint 8.46.0](https://eslint.org/)
+- [Vue.js 3](https://vuejs.org/)
+- [Vite 4](https://vitejs.dev/)
+- [UnoCSS 0.54](https://unocss.dev/)
+- [Quasar 2](https://quasar.dev/)
+- [ESLint 8](https://eslint.org/)
 
 ### Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+[VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+
+## Architecture
+
+### Game Flow (State Machine)
+
+```
+┌───────┐   startGame()   ┌───────────┐   3s elapsed   ┌─────────┐
+│ IDLE  │ ──────────────►  │ COUNTDOWN │ ─────────────►  │ PLAYING │
+└───────┘                  └───────────┘                 └─────────┘
+    ▲                                                     │       │
+    │              restart()                              │       │
+    └──────────────────────────────────── ◄───────────────┘       │
+                                         │                        │
+                                    collision                all levels
+                                         │                   completed
+                                         ▼                        │
+                                    ┌──────────┐            ┌─────▼───┐
+                                    │ GAME OVER│            │   WON   │
+                                    └──────────┘            └─────────┘
+```
+
+### Levels
+
+| Level | Duration | Bamboo Speed | Cloud Speed |
+|-------|----------|--------------|-------------|
+| 1     | 18s      | 3s/cycle     | 8s/cycle    |
+| 2     | 23s      | 2.7s/cycle   | 6s/cycle    |
+| 3     | 28s      | 2.4s/cycle   | 4s/cycle    |
+
+### Project Structure
+
+```
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📂images          # Game sprites and images
+ ┃ ┗ 📜style.css       # Global styles and fonts
+ ┣ 📂components
+ ┃ ┣ 📜StartScreen.vue # Start game UI
+ ┃ ┣ 📜GameBoard.vue   # Active game area with collision elements
+ ┃ ┣ 📜GameOverScreen.vue # Game over UI
+ ┃ ┗ 📜WinScreen.vue   # Victory screen with prize link
+ ┣ 📂composables
+ ┃ ┣ 📜useGameEngine.js # Core game logic, state machine, collision detection
+ ┃ ┗ 📜useTimer.js     # Reusable countdown/timer utility
+ ┣ 📂layouts
+ ┃ ┗ 📜default.vue     # Base layout wrapper
+ ┣ 📂pages
+ ┃ ┣ 📜index.vue       # Main game page (orchestrator)
+ ┃ ┗ 📜prize.vue       # Prize reveal page
+ ┣ 📜App.vue           # Root component
+ ┣ 📜main.js           # App initialization and plugin setup
+ ┗ 📜router.js         # Vue Router with auto-generated routes
+```
+
+### Key Design Decisions
+
+- **State Machine Pattern**: Game state is managed via a reactive `phase` property (`idle` → `countdown` → `playing` → `won`/`over`) instead of multiple boolean flags
+- **requestAnimationFrame**: Collision detection uses `requestAnimationFrame` instead of `setInterval(10ms)` for better performance and battery efficiency
+- **Composables**: Game logic is extracted into reusable composables, separating concerns from UI components
+- **Local Assets**: Images are imported as local assets for bundler optimization and offline capability
+- **Keyboard Support**: Players can jump using Space/Enter keys in addition to mouse click
 
 ## How to use
 
+### Prerequisites
+
+- Node.js >= 18
+- pnpm >= 8
+
 ### Project setup
 
-`pnpm i`
-
-`pnpm update`
-
-`pnpm upgrade`
-
-### Compiles and hot-reloads for development
-
-`pnpm dev`
-
-or
-
-`pnpm dev --port=5173`
-
-### Compiles and minifies for production
-
-`pnpm build`
-
-or
-
-`pnpm build --mode [environment]`
-
-and
-
-`pnpm preview`
-
-### Lints and fixes files
-
-`pnpm lint:fix`
-
-## Project structure
-
+```bash
+pnpm i
 ```
-📦public
-┗ 📜naturo-icon.png
-📦src
- ┣ 📂assets
- ┃ ┣ 📂images
- ┃ ┃ ┣ 📜bamboo-1.png
- ┃ ┃ ┣ 📜cacto.png
- ┃ ┃ ┣ 📜clouds.png
- ┃ ┃ ┣ 📜naruto-angry.png
- ┃ ┃ ┣ 📜naruto-meta-image.jpg
- ┃ ┃ ┣ 📜naruto-running.gif
- ┃ ┃ ┣ 📜naruto-start-game.png
- ┃ ┃ ┣ 📜naturo-and-sasuke.jpg
- ┃ ┃ ┣ 📜sakura.gif
- ┃ ┃ ┗ 📜sasuke-start-game.png
- ┃ ┗ 📜style.css
- ┣ 📂components
- ┣ 📂composables
- ┣ 📂layouts
- ┃ ┗ 📜default.vue
- ┣ 📂pages
- ┃ ┣ 📜index.vue
- ┃ ┗ 📜prize.vue
- ┣ 📂services
- ┃ ┗ 📜api.js
- ┣ 📜App.vue
- ┣ 📜main.js
- ┗ 📜router.js
-┣ 📜.env.exemple
-┣ 📜.eslintrc
-┣ 📜.eslintrc-auto-import.json
-┣ 📜.gitignore
-┣ 📜index.html
-┣ 📜package.json
-┣ 📜pnpm-lock.yaml
-┣ 📜README.md
-┣ 📜uno.config.js
-┗ 📜vite.config.js
+
+### Development
+
+```bash
+pnpm dev
+```
+
+or
+
+```bash
+pnpm dev --port=5173
+```
+
+### Production build
+
+```bash
+pnpm build
+```
+
+```bash
+pnpm preview
+```
+
+### Lint
+
+```bash
+pnpm lint:fix
 ```
 
 ## Deploy Status

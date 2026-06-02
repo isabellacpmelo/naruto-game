@@ -33,6 +33,17 @@ export default defineConfig({
     host: true,
   },
 
+  css: {
+    preprocessorOptions: {
+      sass: {
+        api: 'modern-compiler',
+      },
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
+  },
+
   plugins: [
     vue(),
     Pages(),
