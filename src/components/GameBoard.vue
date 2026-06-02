@@ -126,4 +126,26 @@ defineExpose({ narutoEl, bambooEl })
   from { right: -60%; }
   to { right: 100%; }
 }
+
+@media (max-width: 768px) {
+  .game-board {
+    width: 95%;
+    height: 50%;
+    margin-bottom: 40px;
+  }
+
+  .naruto {
+    width: 40px;
+    height: 50px;
+  }
+
+  .bamboo {
+    height: 35px;
+    width: 20px;
+  }
+
+  .clouds {
+    width: 120px;
+  }
+}
 </style>

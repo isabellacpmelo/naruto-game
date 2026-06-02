@@ -64,4 +64,21 @@ defineProps({
     transform: scale(1);
   }
 }
+
+@media (max-width: 768px) {
+  .start-game {
+    width: 95%;
+    height: 50%;
+    margin-bottom: 40px;
+    font-size: 20px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .start-game img {
+    height: 80px;
+    margin: 0;
+  }
+}
 </style>

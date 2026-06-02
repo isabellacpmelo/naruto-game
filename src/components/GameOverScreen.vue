@@ -46,4 +46,17 @@ defineProps({
   from { transform: scale(0.9); }
   to { transform: scale(1); }
 }
+
+@media (max-width: 768px) {
+  .game-over {
+    width: 95%;
+    height: 50%;
+    margin-bottom: 40px;
+    font-size: 30px;
+  }
+
+  .start-game-btn {
+    font-size: 16px;
+  }
+}
 </style>

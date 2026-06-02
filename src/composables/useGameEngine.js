@@ -44,7 +44,8 @@ export function useGameEngine() {
 
   function startCollisionDetection() {
     function detect() {
-      if (state.phase !== 'playing') return
+      if (state.phase !== 'playing')
+        return
 
       const bamboo = bambooRef.value
       const naruto = narutoRef.value
@@ -100,21 +101,22 @@ export function useGameEngine() {
     countdown.start(COUNTDOWN_SECONDS)
 
     levelTimeoutId = setTimeout(() => {
-      if (state.phase === 'over') return
+      if (state.phase === 'over')
+        return
       state.phase = 'playing'
       gameTimer.start(LEVELS[levelNumber - 1].duration)
       startCollisionDetection()
 
       levelTimeoutId = setTimeout(() => {
-        if (state.phase === 'over') return
+        if (state.phase === 'over')
+          return
         stopCollisionDetection()
 
-        if (levelNumber < LEVELS.length) {
+        if (levelNumber < LEVELS.length)
           startLevel(levelNumber + 1)
-        }
-        else {
+
+        else
           state.phase = 'won'
-        }
       }, LEVELS[levelNumber - 1].duration * 1000)
     }, COUNTDOWN_SECONDS * 1000)
   }

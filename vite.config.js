@@ -6,8 +6,6 @@ import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
-import { quasar } from '@quasar/vite-plugin'
-import { QuasarResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 
 // https://vitejs.dev/config/
@@ -33,29 +31,14 @@ export default defineConfig({
     host: true,
   },
 
-  css: {
-    preprocessorOptions: {
-      sass: {
-        api: 'modern-compiler',
-      },
-      scss: {
-        api: 'modern-compiler',
-      },
-    },
-  },
-
   plugins: [
     vue(),
     Pages(),
     Layouts(),
     UnoCSS(),
-    quasar({
-      autoImportComponentCase: 'pascal',
-    }),
     Components({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      resolvers: [QuasarResolver()],
       dts: false,
     }),
     AutoImport({

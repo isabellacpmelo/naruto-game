@@ -109,4 +109,12 @@ onUnmounted(() => {
   overflow: hidden;
   background: linear-gradient(#0B0B0B, #0C2FDF);
 }
+
+@media (max-width: 768px) {
+  .win-container {
+    width: 95%;
+    height: 50%;
+    margin-bottom: 40px;
+  }
+}
 </style>
