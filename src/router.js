@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from '~pages'
 
@@ -10,7 +10,7 @@ const routes = setupLayouts(generatedRoutes)
   })
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory('/naruto-game/'),
   routes,
 })
 
