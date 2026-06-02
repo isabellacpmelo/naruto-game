@@ -305,6 +305,7 @@
     "watchWithFilter": true,
     "whenever": true,
     "useTimer": true,
-    "useGameEngine": true
+    "useGameEngine": true,
+    "hasWonGame": true
   }
 }

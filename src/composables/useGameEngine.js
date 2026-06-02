@@ -1,5 +1,6 @@
 import { computed, onUnmounted, reactive, ref } from 'vue'
 import { useTimer } from './useTimer'
+import { hasWonGame } from './useGameState'
 
 const LEVELS = [
   { duration: 18, bambooSpeed: 3, cloudsSpeed: 8 },
@@ -115,8 +116,10 @@ export function useGameEngine() {
         if (levelNumber < LEVELS.length)
           startLevel(levelNumber + 1)
 
-        else
+        else {
           state.phase = 'won'
+          hasWonGame.value = true
+        }
       }, LEVELS[levelNumber - 1].duration * 1000)
     }, COUNTDOWN_SECONDS * 1000)
   }
@@ -134,6 +137,7 @@ export function useGameEngine() {
     isJumping.value = false
     state.phase = 'idle'
     state.level = 0
+    hasWonGame.value = false
   }
 
   onUnmounted(() => {
