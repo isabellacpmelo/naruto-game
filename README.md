@@ -4,7 +4,7 @@
 <a href="https://naruto-running-game.netlify.app/#/"><img height="355em" alt="Narutinho Game" src="https://github.com/isabellacpmelo/naruto-game/assets/42364778/c0b4b219-209d-4ecc-8f2c-b2c4cca24a06" /></a>
 </div>
 </br>
-<a href="https://naruto-running-game.netlify.app/#/">Click here to access the website</a>
+<a href="https://naruto-running-game.netlify.app/naruto-game/">Click here to access the website</a>
 
 ## About the project
 
@@ -33,7 +33,7 @@ Naruto Game is a Naruto-themed running game inspired by the classic T-Rex Game f
 - [Vue.js 3](https://vuejs.org/)
 - [Vite 4](https://vitejs.dev/)
 - [UnoCSS 0.54](https://unocss.dev/)
-- [Quasar 2](https://quasar.dev/)
+- [VueUse](https://vueuse.org/)
 - [ESLint 8](https://eslint.org/)
 
 ### Recommended IDE Setup
@@ -82,6 +82,7 @@ Naruto Game is a Naruto-themed running game inspired by the classic T-Rex Game f
  ┃ ┗ 📜WinScreen.vue   # Victory screen with prize link
  ┣ 📂composables
  ┃ ┣ 📜useGameEngine.js # Core game logic, state machine, collision detection
+ ┃ ┣ 📜useGameState.js  # Global game state (win flag for route guard)
  ┃ ┗ 📜useTimer.js     # Reusable countdown/timer utility
  ┣ 📂layouts
  ┃ ┗ 📜default.vue     # Base layout wrapper
@@ -90,7 +91,7 @@ Naruto Game is a Naruto-themed running game inspired by the classic T-Rex Game f
  ┃ ┗ 📜prize.vue       # Prize reveal page
  ┣ 📜App.vue           # Root component
  ┣ 📜main.js           # App initialization and plugin setup
- ┗ 📜router.js         # Vue Router with auto-generated routes
+ ┗ 📜router.js         # Vue Router with route guards and catch-all redirect
 ```
 
 ### Key Design Decisions
@@ -100,6 +101,8 @@ Naruto Game is a Naruto-themed running game inspired by the classic T-Rex Game f
 - **Composables**: Game logic is extracted into reusable composables, separating concerns from UI components
 - **Local Assets**: Images are imported as local assets for bundler optimization and offline capability
 - **Keyboard Support**: Players can jump using Space/Enter keys in addition to mouse click
+- **Route Guard**: The `/prize` page is only accessible after winning the game; direct URL access redirects to home
+- **Catch-all Route**: Any invalid URL redirects to the home page
 
 ## How to use
 
